@@ -9,7 +9,7 @@ the Binet's formula function because the Binet formula function  uses floats
 NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
 
-RESULTS: (n = 20)
+RESULTS: (number = 20)
 fib_iterative runtime: 0.0055 ms
 fib_recursive runtime: 6.5627 ms
 fib_memoization runtime: 0.0107 ms
@@ -34,7 +34,7 @@ def time_func(func, *args, **kwargs):
     return output
 
 
-def fib_iterative(n: int) -> list[int]:
+def fib_iterative(number: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using iteration
     >>> fib_iterative(0)
@@ -50,17 +50,17 @@ def fib_iterative(n: int) -> list[int]:
     ...
     Exception: n is negative
     """
-    if n < 0:
-        raise Exception("n is negative")
-    if n == 0:
+    if number < 0:
+        raise Exception("number is negative")
+    if number == 0:
         return [0]
     fib = [0, 1]
-    for _ in range(n - 1):
+    for _ in range(number - 1):
         fib.append(fib[-1] + fib[-2])
     return fib
 
 
-def fib_recursive(n: int) -> list[int]:
+def fib_recursive(number: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
     >>> fib_iterative(0)
@@ -74,7 +74,7 @@ def fib_recursive(n: int) -> list[int]:
     >>> fib_iterative(-1)
     Traceback (most recent call last):
     ...
-    Exception: n is negative
+    Exception: number is negative
     """
 
     def fib_recursive_term(i: int) -> int:
@@ -82,17 +82,17 @@ def fib_recursive(n: int) -> list[int]:
         Calculates the i-th (0-indexed) Fibonacci number using recursion
         """
         if i < 0:
-            raise Exception("n is negative")
+            raise Exception("number is negative")
         if i < 2:
             return i
         return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
 
-    if n < 0:
-        raise Exception("n is negative")
+    if number < 0:
+        raise Exception("number is negative")
     return [fib_recursive_term(i) for i in range(n + 1)]
 
 
-def fib_memoization(n: int) -> list[int]:
+def fib_memoization(number: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using memoization
     >>> fib_memoization(0)
@@ -108,8 +108,8 @@ def fib_memoization(n: int) -> list[int]:
     ...
     Exception: n is negative
     """
-    if n < 0:
-        raise Exception("n is negative")
+    if number < 0:
+        raise Exception("number is negative")
     # Cache must be outside recursuive function
     # other it will reset every time it calls itself.
     cache: dict[int, int] = {0: 0, 1: 1, 2: 1}  # Prefilled cache
@@ -125,7 +125,7 @@ def fib_memoization(n: int) -> list[int]:
     return [rec_fn_memoized(i) for i in range(n + 1)]
 
 
-def fib_binet(n: int) -> list[int]:
+def fib_binet(number: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using a simplified form
     of Binet's formula:
@@ -153,13 +153,13 @@ def fib_binet(n: int) -> list[int]:
     ...
     Exception: n is too large
     """
-    if n < 0:
-        raise Exception("n is negative")
-    if n >= 1475:
-        raise Exception("n is too large")
-    sqrt_5 = sqrt(5)
-    phi = (1 + sqrt_5) / 2
-    return [round(phi ** i / sqrt_5) for i in range(n + 1)]
+    if number < 0:
+        raise Exception("number is negative enter  a postive number")
+    if number >= 1475:
+        raise Exception("number is too large enter number less than 1475")
+   
+    phi = (1 + sqrt(5)) / 2
+    return [round(phi ** i / sqrt(5)) for i in range(number + 1)]
 
 
 if __name__ == "__main__":
