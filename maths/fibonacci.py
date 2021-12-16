@@ -89,7 +89,7 @@ def fib_recursive(number: int) -> list[int]:
 
     if number < 0:
         raise Exception("number is negative")
-    return [fib_recursive_term(i) for i in range(n + 1)]
+    return [fib_recursive_term(i) for i in range(number + 1)]
 
 
 def fib_memoization(number: int) -> list[int]:
@@ -122,7 +122,7 @@ def fib_memoization(number: int) -> list[int]:
         cache[num] = value
         return value
 
-    return [rec_fn_memoized(i) for i in range(n + 1)]
+    return [rec_fn_memoized(i) for i in range(number + 1)]
 
 
 def fib_binet(number: int) -> list[int]:
